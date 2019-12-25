@@ -19,6 +19,8 @@ Route::get('/checkout/success', 'CheckoutController@success')->name('checkout-su
 
 //nanti kita bisa rapih untuk menstruktur kan route(prefix)
 //namaspace adalah secara automotis /admin, ketika kita manggil tidak perlu make admin legal
-Route::prefix('admin')->namespace('Admin')->group(function(){
+Route::prefix('admin')->namespace('Admin')->middleware(['auth', 'admin'])->group(function(){
   Route::get('/', 'DashboardController@index')->name('dashboard');
 });
+
+Auth::routes();
